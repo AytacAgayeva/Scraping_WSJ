@@ -45,18 +45,18 @@ for url in urls:
     language = url.find("news:language").text
     publication_date = url.find("news:publication_date").text[:10]
     publication_time = url.find("news:publication_date").text[11:19]
-    image_loc_tag = url.find("image:loc")
-    keywords_tag=url.find("news:keywords")
-    if image_loc_tag and keywords_tag  is not None:
-        image_loc = image_loc_tag.text
-        keywords=keywords_tag.text
+    #image_loc_tag = url.find("image:loc")
+    #keywords_tag=url.find("news:keywords")
+    #if image_loc_tag and keywords_tag  is not None:
+        #image_loc = image_loc_tag.text
+        #keywords=keywords_tag.text
     row_data = {
         "URL": loc,
         "Title": title,
         "Language":language,
         "Publication Date": publication_date,
         "Publication Time": publication_time,
-        "Image URL": image_loc,
+        #"Image URL": image_loc,
         }
     data.append(row_data)    
 df = pd.DataFrame(data)
