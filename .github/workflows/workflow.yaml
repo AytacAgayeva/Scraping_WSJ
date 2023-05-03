@@ -1,8 +1,8 @@
 name: wsj
 
-on:
-  schedule:
-    - cron: '*/30 * * * *' # runs at 12:00 UTC everyday
+#on:
+  #schedule:
+    #- cron: '*/30 * * * *' # runs at 12:00 UTC everyday
   workflow_dispatch:
 jobs:
   build:
@@ -22,7 +22,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install pandas bs4 requests pickle5 datetime lxml selenium 
           
-      - name: execute py script # run sj-gobierno.py to get the latest data
+      - name: Remove Chrome
+        run: sudo apt purge google-chrome-stable
+      - name: Remove default Chromium
+        run: sudo apt purge chromium-browser
+      - name: Install a new Chromium
+        run: sudo apt install -y chromium-browser
+        
+      - name: execute py script 
         env: 
           EMAIL_ADDRESS: ${{ secrets.EMAIL_ADDRESS }}
           EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
