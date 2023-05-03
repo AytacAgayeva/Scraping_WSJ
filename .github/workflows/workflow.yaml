@@ -1,4 +1,4 @@
-name: bloomberg_cron
+name: wsj
 
 on:
   schedule:
