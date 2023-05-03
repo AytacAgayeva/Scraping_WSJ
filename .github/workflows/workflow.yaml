@@ -1,6 +1,6 @@
 name: wsj
 
-#on:
+on:
   #schedule:
     #- cron: '*/30 * * * *' # runs at 12:00 UTC everyday
   workflow_dispatch:
