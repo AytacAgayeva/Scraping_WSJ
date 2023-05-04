@@ -41,15 +41,21 @@ current_time = now.strftime("%H_%M")
 data = []
 for url in urls:
     loc = url.loc.text
-    title = url.find("news:title").text
-    language = url.find("news:language").text
-    publication_date = url.find("news:publication_date").text[:10]
-    publication_time = url.find("news:publication_date").text[11:19]
-    image_loc_tag = url.find("image:loc")
-    keywords_tag=url.find("news:keywords")
-    if image_loc_tag and keywords_tag  is not None:
-        image_loc = image_loc_tag.text
-        keywords=keywords_tag.text
+    title = ""
+    language = ""
+    publication_date = ""
+    publication_time = ""
+    keywords = ""
+    image_loc = ""
+    try:
+        title = url.find("news:title").text
+        language=url.find("news:language").text
+        publication_date = url.find("news:publication_date").text[:10]
+        publication_time = url.find("news:publication_date").text[11:19]
+        image_loc = url.find("image:loc").text
+        keywords=url.find("news:keywords").text
+    except AttributeError:
+        pass
     row_data = {
         "URL": loc,
         "Title": title,
